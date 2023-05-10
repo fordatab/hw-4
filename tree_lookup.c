@@ -31,15 +31,14 @@ int main(int argc, char **argv) {
 		free(htable);
 		return EXIT_FAILURE;
 	}
-
-	// TODO: implement getline loop
-	// read one line at a time from stdin, do a lookup for that id
-	// 
 	
 	size_t bufsz = 0;
 	char *buf = NULL; 
-	// TODO: reminder, make sure buf is freed when you're done with it 
 	
+	// TODO: implement getline loop
+	// read one line at a time from stdin, do a lookup for that id
+	// 
+	// TODO: reminder, make sure buf is freed when you're done with it 
 	ssize_t bytes;
 	while ((bytes = getline(/* TODO: fill in*/)) > 0) {
 		// replace the \n, if it exists (for hashing)
