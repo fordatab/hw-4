@@ -1,23 +1,20 @@
 // CES30 assignment template
 // 
+// cse30sp23id: 
 //
 // Describe target Hardware to the assembler
 .arch   armv6
-.arm
-.fpu	vfp
+.cpu    cortex-a53
 .syntax unified
-.align 4
-.bss
-.data
 /////////////////////////////////////////////////////////
 
 .text                       // start of the text segment
 /////////////////////////////////////////////////////////
 // function hashFun 
 /////////////////////////////////////////////////////////
-.type   hashFun, %function // define as a function
-.global hashFun            // export function name
-.equ    FP_OFFSET, 28      // (regs - 1) * 4
+.type   hashFun, %function  // define as a function
+.global hashFun             // export function name
+.equ    FP_OFFSET, 28       // (regs - 1) * 4
 /////////////////////////////////////////////////////////
 
 // put any .equ for hashFun here - delete this line
@@ -27,19 +24,16 @@
 hashFun:
     push    {r4-r9, fp, lr}     // use r4-r9 protected regs
     add     fp, sp, FP_OFFSET   // locate our frame pointer
-    // do not edit the prologue above
+    // DO NOT EDIT PROLOGUE ABOVE
     // You can use temporary r0-r3 and preserved r4-r9
     // Store return value (results) in r0
-    /////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////
     
-    // TODO: Write your code here to implement the hash function.
-    // For reference, the C implementation is shown here:
-    // hash = c + (hash << 6) + (hash << 16) - hash;
-
-    /////////////////////////////////////////////////////////
-    // do not edit the epilogue below
+    // YOUR CODE GOES HERE
+    
+    ///////////////////////////////////////////////////////
+    // DO NOT EDIT EPILOGUE BELOW
     sub     sp, fp, FP_OFFSET   // restore sp
-    pop     {r4-r9,fp, lr}      // restore saved registers
-    bx      lr                  // function return 
-    .size   hashFun,(. - hashFun)
-
+    pop     {r4-r9, fp, lr}     // restore saved registers
+    bx      lr                  // function return
+    .size   hashFun,(.-hashFun)
