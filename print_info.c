@@ -7,6 +7,8 @@
 #define LONGEST_MSG "Longest chain: %lu\n"
 #define SHORTEST_MSG "Shortest chain: %lu\n"
 #define EMPTY_MSG "Empty buckets: %lu\n"
+#define TREES_WITHIN_REGION_MSG "Total trees within given region: %lu\n"
+
 
 void print_info(node **htable, unsigned long tabsz) {
 	// TODO: walk down the indices of the htable
