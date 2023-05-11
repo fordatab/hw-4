@@ -35,12 +35,10 @@ int main(int argc, char **argv) {
 	size_t bufsz = 0;
 	char *buf = NULL; 
 	
-	// TODO: implement getline loop
 	// read one line at a time from stdin, do a lookup for that id
 	// 
-	// TODO: reminder, make sure buf is freed when you're done with it 
 	ssize_t bytes;
-	while ((bytes = getline(/* TODO: fill in*/)) > 0) {
+	while ((bytes = getline(&buf, &bufsz, stdin)) > 0) {
 		// replace the \n, if it exists (for hashing)
 		if (buf[bytes - 1] == '\n') buf[bytes - 1] = '\0';
 
@@ -61,9 +59,9 @@ int main(int argc, char **argv) {
 	}
 
 	// TODO: free all allocated memory associated with the table 
-	// using delete_table
+	// using delete_table()
 	//
-	// also free any other allocated memory (e.g. getline)
+	free(buf);  // free the buffer allocated by getline()
 
 	return EXIT_SUCCESS;
 }
