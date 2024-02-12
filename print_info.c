@@ -11,16 +11,35 @@
 
 
 void print_info(node **htable, unsigned long tabsz) {
-	// TODO: walk down the indices of the htable
-	// iterate through each chain and update statistics
-	// print out statistics at end
-	//
-	// NOTE: all your statistics variables should be of type
-	// unsigned long
-	//
-	// NOTE: you may use ULONG_MAX if you want
-	// (maximum value for unsigned long int)
-	
-	(void) htable; // suppress unused variable warnings
-	(void) tabsz; // TODO: delete these once you start implementation
+    long node_count = 0;
+    long longest_chain = 0;
+    long shortest_chain = 0;
+    long empty_buckets = 0;
+
+    for (unsigned long x = 0; x < tabsz; x++) {
+        node *temp = htable[x];
+        int nodes = 0;
+        while (temp != NULL) {
+            temp = temp->next;
+            nodes++;
+            node_count++;
+        }
+        if (nodes == 0) {
+            empty_buckets++;
+        }
+        if (nodes > longest_chain) {
+            longest_chain = nodes;
+        }
+        if (x == 0) {
+            shortest_chain = nodes;
+        }
+        if (nodes < shortest_chain) {
+            shortest_chain = nodes;
+        }
+    }
+    printf(TABSZ_MSG, tabsz);
+    printf(TOTAL_ENTRIES_MSG, node_count);
+    printf(LONGEST_MSG, longest_chain);
+    printf(SHORTEST_MSG, shortest_chain);
+    printf(EMPTY_MSG, empty_buckets);
 }

@@ -29,7 +29,12 @@ hashFun:
     // Store return value (results) in r0
     ///////////////////////////////////////////////////////
     
-    // YOUR CODE GOES HERE
+    lsl r2, r1, 6               // Store the left shifted bits to r2
+    lsl r3, r1, 16              // Store the left shifted bits to r3
+    sub r1, r0, r1              // Sub c by hash and store in r1
+    add r1, r1, r2              // Add r2 to r1
+    add r1, r1, r3              // Add r3 to r1
+    mov r0, r1                  // Move result to r0
     
     ///////////////////////////////////////////////////////
     // DO NOT EDIT EPILOGUE BELOW

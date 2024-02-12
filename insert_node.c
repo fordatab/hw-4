@@ -3,19 +3,17 @@
 #include "node.h"
 
 node *insert_node(node *front, char* id, double x, double y) {
-	(void) front; // suppress unused variable warnings
-	(void) id; // TODO: delete these once you start implementing insert_node
-	(void) x;
-	(void) y;
-	
-	// TODO: create a node, copy in the parameter fields
-	// make sure that you do a deep copy
-	
-	// TODO: link the new node into the chain 
+    char *tree_name = malloc(sizeof(char) * (strlen(id)+1));
+    tree_name = strcpy(tree_name, id);
+    node *head = malloc(sizeof(node));
+    if (head == NULL) {
+        return NULL;
+    }
 
-	// TODO: return the new head of the chain if the function succeeded
-	
-	return NULL; // TODO: replace this once you implement
+    head->id = tree_name;
+    head->xcoord = x;
+    head->ycoord = y;
+    head->next = front;
+
+    return head;
 }
-
-
