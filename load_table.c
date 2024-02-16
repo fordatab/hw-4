@@ -9,24 +9,34 @@
 #define INSERTION_ERROR_MSG "load_table could not create node for %s\n"
 
 int load_table(node **htable, unsigned long int tabsz, char *filename) {
+    // Create FILE pointer
     FILE *fp = NULL;
+    // Open file
 	if ((fp = fopen(filename, "r")) == NULL) {
         fprintf(stderr, FILE_OPEN_ERR_MSG, filename);
         return -1;
     }
-
-	char buf[MAX_LINELEN + 1]; // input buffer for fgets
+    // Input buffer for fgets
+	char buf[MAX_LINELEN + 1];
+    // Get line using fgets
 	while (fgets(buf, MAX_LINELEN + 1, fp) == buf) {
+        // Get the first token
         char *token = strtok(buf, ",");
         char *id = token;
+        // Get the next token
         token = strtok(NULL, ",");
         double x = atof(token);
+        // Get the next token
         token = strtok(NULL, ",");
         double y = atof(token);
+        // Get the hash value
         int index = hash(id)%tabsz;
+        // Find if already in table
         if (node_lookup(htable[index], id) == NULL) {
+            // Insert into table
             htable[index] = insert_node(htable[index], id, x, y);
-            if (htable[index] == NULL) {
+            // Check if successfully added
+            if (node_lookup(htable[index], id) == NULL) {
                 printf(INSERTION_ERROR_MSG, id);
                 return -1;
             }
